@@ -12,7 +12,7 @@ import os
 
 from config import settings
 from ..constants import SUPPORTED_INDICES, PERIODS
-from ..data_fetcher import YFinanceFetcher
+from ..data_fetcher import AkShareFetcher
 from ..indicators import IndicatorCalculator
 from ..storage import Database, Cache
 from ..analysis import DataAnalyzer
@@ -39,7 +39,7 @@ app.add_middleware(
 )
 
 # 初始化组件
-fetcher = YFinanceFetcher()
+fetcher = AkShareFetcher()
 calculator = IndicatorCalculator()
 database = Database()
 cache = Cache()
