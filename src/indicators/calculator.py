@@ -406,8 +406,8 @@ class IndicatorCalculator:
                         "dif": float(macd_dif),
                         "dea": float(macd_dea),
                         "hist": float(latest.get("MACD_HIST", 0)),
-                        "golden_cross": prev_dif <= prev_dea and macd_dif > macd_dea,
-                        "death_cross": prev_dif >= prev_dea and macd_dif < macd_dea,
+                        "golden_cross": bool(prev_dif <= prev_dea and macd_dif > macd_dea),
+                        "death_cross": bool(prev_dif >= prev_dea and macd_dif < macd_dea),
                     }
 
             # KDJ信号
@@ -421,8 +421,8 @@ class IndicatorCalculator:
                         "k": float(k_value),
                         "d": float(d_value),
                         "j": float(j_value),
-                        "overbought": k_value > 80 and d_value > 80,
-                        "oversold": k_value < 20 and d_value < 20,
+                        "overbought": bool(k_value > 80 and d_value > 80),
+                        "oversold": bool(k_value < 20 and d_value < 20),
                     }
 
             # RSI信号
@@ -432,8 +432,8 @@ class IndicatorCalculator:
                     if pd.notna(rsi_value):
                         signals["rsi"][col] = {
                             "value": float(rsi_value),
-                            "overbought": rsi_value > 70,
-                            "oversold": rsi_value < 30,
+                            "overbought": bool(rsi_value > 70),
+                            "oversold": bool(rsi_value < 30),
                         }
 
             return signals
